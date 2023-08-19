@@ -12,8 +12,9 @@ class StreamSink : public Sink {
  public:
   explicit StreamSink(std::ostream &stream) : _stream{stream} {}
 
-  void save(const std::vector<std::string> &commands,
-            std::chrono::system_clock::time_point first_command_ts) override {
+  void save(
+      const std::vector<std::string> &commands,
+      std::chrono::system_clock::time_point /*first_command_ts*/) override {
     _stream << "bulk: ";
     utils::write_with_sep(_stream, commands, ", ");
   }
