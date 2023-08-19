@@ -1,3 +1,4 @@
+#include <exception>
 #include <iostream>
 #include <string>
 
@@ -23,9 +24,13 @@ int main(int argc, char *argv[]) {
   parser.register_sink(file_sink);
   parser.register_sink(stream_sink);
 
-  std::string command_line;
-  while (std::getline(std::cin, command_line)) {
-    parser.feed(command_line);
+  try {
+    std::string command_line;
+    while (std::getline(std::cin, command_line)) {
+      parser.feed(command_line);
+    }
+    parser.end();
+  } catch (std::exception &e) {
+    std::cerr << "Error: " << e.what() << std::endl;
   }
-  parser.end();
 }
