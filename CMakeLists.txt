@@ -10,6 +10,7 @@ option(RUN_IWYU OFF)
 option(BUILD_DOCS OFF)
 option(ENABLE_COVERAGE OFF)
 
+add_subdirectory(libs)
 
 add_library(
   ${PROJECT_NAME}_lib STATIC
@@ -26,7 +27,13 @@ target_compile_options(
 )
 
 add_executable(${PROJECT_NAME} src/main.cpp)
-target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}_lib)
+
+target_link_libraries(
+  ${PROJECT_NAME} PRIVATE 
+  ${PROJECT_NAME}_lib
+  CLI11::CLI11
+)
+
 target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wpedantic -Werror)
 
 set_target_properties(
