@@ -13,7 +13,7 @@ add_executable(
 
 target_link_libraries(
   ${PROJECT_NAME} PRIVATE
-  cmd_lib
+  bulk_lib
   GTest::gtest
   GTest::gtest_main
   GTest::gmock

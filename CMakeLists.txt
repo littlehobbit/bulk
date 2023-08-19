@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
 
 set(VERSION "0.0.0" CACHE STRING "Project version")
-project(cmd VERSION ${VERSION} LANGUAGES CXX)
+project(bulk VERSION ${VERSION} LANGUAGES CXX)
 
 option(BUILD_TESTS OFF)
 option(BUILD_PACKAGE OFF)

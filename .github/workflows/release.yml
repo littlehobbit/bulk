@@ -68,8 +68,8 @@ jobs:
         BRANCH: ${{steps.get_branch.outputs.current_branch}}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./build/cmd-${{steps.get_version.outputs.version}}-Linux.deb
-        asset_name: cmd-${{env.BRANCH}}-${{steps.get_version.outputs.version}}-${{env.COMMIT_DISTANCE}}-Linux.deb
+        asset_path: ./build/bulk-${{steps.get_version.outputs.version}}-Linux.deb
+        asset_name: bulk-${{env.BRANCH}}-${{steps.get_version.outputs.version}}-${{env.COMMIT_DISTANCE}}-Linux.deb
         asset_content_type: application/vnd.debian.binary-package
 
     - name: Upload docs
