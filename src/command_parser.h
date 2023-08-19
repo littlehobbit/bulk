@@ -36,7 +36,7 @@ class CommandParser {
   void end();
 
  private:
-  void save_to_sinks(std::chrono::system_clock::time_point ts);
+  void save_to_sinks();
 
   void enter_block();
   void exit_block();
@@ -61,7 +61,7 @@ class CommandParser {
   std::vector<std::weak_ptr<sink::Sink>> _sinks;
   std::vector<std::string> _current_commands;
   std::size_t _nested{0};
-  std::chrono::system_clock::time_point _first_commands_ts;
+  std::chrono::system_clock::time_point _first_commands_ts{};
 
   static constexpr auto BLOCK_START = "{";
   static constexpr auto BLOCK_END = "}";

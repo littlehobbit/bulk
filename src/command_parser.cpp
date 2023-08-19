@@ -17,20 +17,20 @@ void CommandParser::feed(std::string command) {
     exit_block();
 
     if (is_not_nested()) {
-      save_to_sinks({});
+      save_to_sinks();
     }
   } else {
     add_command(std::move(command));
 
     if (is_full_block() && is_not_nested()) {
-      save_to_sinks({});
+      save_to_sinks();
     }
   }
 }
 
 void CommandParser::enter_block() {
   if (is_not_nested()) {
-    save_to_sinks({});
+    save_to_sinks();
   }
 
   _nested++;
@@ -45,18 +45,18 @@ void CommandParser::exit_block() {
 
 void CommandParser::end() {
   if (is_not_nested()) {
-    save_to_sinks({});
+    save_to_sinks();
   }
 }
 
-void CommandParser::save_to_sinks(std::chrono::system_clock::time_point ts) {
+void CommandParser::save_to_sinks() {
   if (!has_commands()) {
     return;
   }
 
   for (auto &sink : _sinks) {
     if (auto ptr = sink.lock(); ptr != nullptr) {
-      ptr->save(_current_commands, ts);
+      ptr->save(_current_commands, _first_commands_ts);
     }
   }
   _current_commands.clear();
