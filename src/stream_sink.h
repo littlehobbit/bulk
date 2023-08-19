@@ -8,8 +8,17 @@
 
 namespace sink {
 
+/**
+ * @brief `Sink` interface realization to save bulk of commands to specified stream
+ *
+ */
 class StreamSink : public Sink {
  public:
+  /**
+   * @brief Construct a new Stream Sink object
+   *
+   * @param stream stream to save commands
+   */
   explicit StreamSink(std::ostream &stream) : _stream{stream} {}
 
   void save(

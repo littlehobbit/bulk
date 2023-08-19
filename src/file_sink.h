@@ -11,13 +11,20 @@
 
 namespace sink {
 
+/**
+ * @brief Implements the `Sink` interface for saving a bulk of commands to a
+ * file.
+ *
+ * This class saves accumulated commands to a file named
+ * "bulk<time>.log", where <time> is the timestamp of the first received
+ * command.
+ */
 class FileSink : public Sink {
  public:
   void save(const std::vector<std::string> &commands,
             std::chrono::system_clock::time_point first_command_ts) override {
     const auto file_name = create_filename(first_command_ts);
     std::ofstream file{file_name};
-
     utils::write_with_sep(file, commands, ", ");
   }
 
