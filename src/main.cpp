@@ -10,7 +10,7 @@
 #include "stream_sink.h"
 
 int main(int argc, char *argv[]) {
-  CLI::App app{"Command block packer", "cmd"};
+  CLI::App app{"Command block packer", "bulk"};
 
   std::size_t n{};
   app.add_option("-n", n, "Size of block")->required();
